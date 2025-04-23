@@ -74,3 +74,26 @@ body {
     background-color: #218838;
   }
   
+  .informativa-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+  }
+  
+  .informativa-container h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+  
+  .informativa-container p {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .informativa-container img {
+    margin-top: 20px;
+    border-radius: 8px;
+    max-width: 100%;
+  }
+  
