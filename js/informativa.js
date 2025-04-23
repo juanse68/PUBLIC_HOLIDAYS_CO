@@ -38,7 +38,7 @@ export function cargarInformativa() {
   
         <!-- Imagen PNG temática relacionada con feriados o Colombia -->
         <div style="margin-top: 20px;">
-          <img src="images.png" alt="Imagen Temática" style="width: 100%; border-radius: 8px;">
+          <img src="https://example.com/imagen-tematica.png" alt="Imagen Temática" style="width: 100%; border-radius: 8px;">
         </div>
   
         <!-- Mensaje de agradecimiento en la parte inferior -->

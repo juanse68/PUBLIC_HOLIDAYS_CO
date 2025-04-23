@@ -1,23 +1,5 @@
-// Este archivo maneja el CRUD de favoritos usando localStorage
-
-// Función para agregar un feriado a los favoritos
-export function agregarFavorito(fecha, nombre) {
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || []; // Recuperamos los favoritos del localStorage (si existen)
-    
-    // Verificamos si el feriado ya está en favoritos
-    if (favoritos.find(f => f.fecha === fecha)) {
-      alert("Ya está en favoritos"); // Si ya está, mostramos una alerta
-      return;
-    }
-  
-    // Si no está en favoritos, lo añadimos
-    favoritos.push({ fecha, nombre });
-    localStorage.setItem("favoritos", JSON.stringify(favoritos)); // Guardamos la nueva lista de favoritos en localStorage
-    alert("Agregado a favoritos"); // Confirmamos que se agregó
-  }
-  
-  // Función para mostrar los favoritos en la pestaña "Favoritos"
-  export function mostrarFavoritos() {
+// Función para mostrar los favoritos en la pestaña "Favoritos"
+export function mostrarFavoritos() {
     const lista = document.getElementById("lista-favoritos");
     lista.innerHTML = ""; // Limpiamos la lista de favoritos
   
@@ -37,13 +19,5 @@ export function agregarFavorito(fecha, nombre) {
       `;
       lista.appendChild(item); // Añadimos cada favorito a la lista
     });
-  }
-  
-  // Función para eliminar un favorito
-  export function eliminarFavorito(index) {
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-    favoritos.splice(index, 1); // Eliminamos el favorito de la lista usando su índice
-    localStorage.setItem("favoritos", JSON.stringify(favoritos)); // Guardamos la lista actualizada en localStorage
-    mostrarFavoritos(); // Volvemos a mostrar la lista de favoritos actualizada
   }
   
