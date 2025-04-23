@@ -8,7 +8,7 @@ export function cargarInicio() {
         <p>Explora todos los días festivos del año en nuestro país.</p>
         
         <!-- Imagen temática del sombrero vueltiao -->
-        <img src="/mnt/data/67b143e2-646f-45a4-872b-7c3d592c7ed8.png" 
+        <img src="images.png" 
              alt="Sombrero Vueltiao - símbolo de Colombia" 
              class="imagen-tematica">
       </section>
