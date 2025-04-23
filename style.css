@@ -1,72 +1,129 @@
-/* ==========================================
-   ESTILOS GLOBALES DE LA APLICACIÓN
-   ========================================== */
+/* style.css */
 
-/* Fondo general para toda la aplicación usando la bandera de Colombia */
+/* Estilo global */
 body {
-    /* Imagen de fondo: bandera redonda de Colombia */
-    background-image: url('/mnt/data/379e0ef0-6345-48b0-b282-bf9d8e40dd85.png');
-    background-size: cover;               /* Asegura que cubra toda la pantalla */
-    background-position: center;          /* Centra la imagen */
-    background-repeat: no-repeat;         /* No repite la imagen */
-    background-attachment: fixed;         /* El fondo permanece fijo al hacer scroll */
-    
-    /* Estilos generales */
-    font-family: Arial, sans-serif;
-    color: white;                         /* Texto blanco para contrastar con el fondo */
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    background-color: #f0f0f0;
+    color: #333;
   }
   
-  /* Contenedor principal de la app */
-  main#app {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la lectura */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4); /* Sombra para destacar el contenido */
-    margin: 10px;
   }
   
-  /* Estilo base para títulos */
-  h1, h2, h3 {
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Mejora visibilidad en fondo claro */
+  h2 {
+    color: #002d72;
+    font-size: 24px;
+    text-align: center;
+    padding-bottom: 10px;
   }
   
-  /* Estilo para enlaces */
-  a {
-    color: #ffc107;              /* Amarillo Colombia para destacar */
-    text-decoration: none;
+  /* Menú inferior */
+  #tabs {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ffcc00;
+    padding: 10px;
   }
   
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Opcional: estilo base para botones */
-  button {
-    background-color: #0057a8;   /* Azul bandera */
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
     cursor: pointer;
     font-weight: bold;
+    color: white;
+    transition: background-color 0.3s;
   }
   
-  button:hover {
-    background-color: #003f7f;   /* Azul más oscuro al pasar el mouse */
+  .tab:hover {
+    background-color: #002d72;
   }
   
-  /* Imagen temática en la vista de inicio */
-.imagen-tematica {
+  .tab.active {
+    background-color: #003366;
+  }
+  
+  /* Vistas */
+  .view {
+    display: none;
+  }
+  
+  .view.active {
     display: block;
-    margin: 20px auto;
-    max-width: 300px;
-    width: 80%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
   }
+  
+  #vista-feriados, #vista-favoritos, #vista-buscar, #vista-informativa {
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  #vista-feriados ul, #vista-favoritos ul, #resultados-busqueda {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para la pestaña Informativa */
+  #vista-informativa {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Flag_of_Colombia.svg/1200px-Flag_of_Colombia.svg.png');
+    background-size: cover;
+    background-position: center;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  #vista-informativa h2 {
+    font-size: 28px;
+    color: #ffcc00;
+    margin-bottom: 20px;
+  }
+  
+  #vista-informativa p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  #vista-informativa img {
+    width: 150px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Input de búsqueda */
+  #input-busqueda {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+  }
+  
+  #input-busqueda:focus {
+    outline: none;
+    border-color: #ffcc00;
+  }
+  
+  /* Agregar un poco de espacio para las listas */
+  ul {
+    margin: 20px 0;
+  }
+  
   
