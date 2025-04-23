@@ -1,99 +1,72 @@
+/* ==========================================
+   ESTILOS GLOBALES DE LA APLICACIÓN
+   ========================================== */
+
+/* Fondo general para toda la aplicación usando la bandera de Colombia */
 body {
+    /* Imagen de fondo: bandera redonda de Colombia */
+    background-image: url('/mnt/data/379e0ef0-6345-48b0-b282-bf9d8e40dd85.png');
+    background-size: cover;               /* Asegura que cubra toda la pantalla */
+    background-position: center;          /* Centra la imagen */
+    background-repeat: no-repeat;         /* No repite la imagen */
+    background-attachment: fixed;         /* El fondo permanece fijo al hacer scroll */
+    
+    /* Estilos generales */
     font-family: Arial, sans-serif;
+    color: white;                         /* Texto blanco para contrastar con el fondo */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    min-height: 100vh;
   }
   
-  .container {
-    max-width: 500px;
-    margin: 20px auto;
+  /* Contenedor principal de la app */
+  main#app {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la lectura */
     padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4); /* Sombra para destacar el contenido */
+    margin: 10px;
   }
   
-  #tabs {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+  /* Estilo base para títulos */
+  h1, h2, h3 {
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Mejora visibilidad en fondo claro */
   }
   
-  .tab {
-    cursor: pointer;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
+  /* Estilo para enlaces */
+  a {
+    color: #ffc107;              /* Amarillo Colombia para destacar */
+    text-decoration: none;
   }
   
-  .tab:hover {
-    background-color: #0056b3;
+  a:hover {
+    text-decoration: underline;
   }
   
-  .view {
-    display: none;
-  }
-  
-  .view.active {
-    display: block;
-  }
-  
-  #input-busqueda {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: #f8f9fa;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 4px;
-  }
-  
+  /* Opcional: estilo base para botones */
   button {
-    background-color: #28a745;
+    background-color: #0057a8;   /* Azul bandera */
     color: white;
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 10px 16px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
   }
   
   button:hover {
-    background-color: #218838;
+    background-color: #003f7f;   /* Azul más oscuro al pasar el mouse */
   }
   
-  .informativa-container {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 8px;
-    color: white;
-  }
-  
-  .informativa-container h2 {
-    font-size: 2em;
-    margin-bottom: 15px;
-  }
-  
-  .informativa-container p {
-    font-size: 1.2em;
-    margin: 10px 0;
-  }
-  
-  .informativa-container img {
-    margin-top: 20px;
-    border-radius: 8px;
-    max-width: 100%;
+  /* Imagen temática en la vista de inicio */
+.imagen-tematica {
+    display: block;
+    margin: 20px auto;
+    max-width: 300px;
+    width: 80%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
   }
   
