@@ -1,5 +1,8 @@
 import { renderInfoTab } from './infoTab.js';
 import { obtenerFeriados, feriados } from './api.js';
+import { renderBuscarTab } from './buscador.js';
+import { renderFiltrarTab } from './filtrar.js';
+import { renderFavoritosTab } from './favoritosTab.js';
 
 window.addEventListener("DOMContentLoaded", () => {
   cambiarPestaña('inicio');
@@ -7,7 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 window.cambiarPestaña = async function(pestaña) {
   const app = document.getElementById("app");
-  
+
   switch (pestaña) {
     case 'inicio':
       app.innerHTML = `<h2>Inicio</h2><p>Cargando feriados...</p>`;
@@ -26,7 +29,7 @@ window.cambiarPestaña = async function(pestaña) {
       break;
 
     case 'buscar':
-      app.innerHTML = `<h2>Buscar</h2><p>Aquí irá el buscador de feriados.</p>`;
+      renderBuscarTab();
       break;
 
     case 'filtrar':
@@ -45,7 +48,19 @@ window.cambiarPestaña = async function(pestaña) {
       renderInfoTab();
       break;
 
+    case 'filtrar':
+      renderFiltrarTab();
+      break;
+
+    case 'favoritos':
+      renderFavoritosTab();
+      break;
+
+      
+
     default:
       app.innerHTML = `<h2>Error</h2><p>Pestaña no encontrada.</p>`;
   }
+
+
 }
