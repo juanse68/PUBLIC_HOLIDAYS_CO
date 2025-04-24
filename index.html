@@ -2,36 +2,39 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <!-- Define la codificación de caracteres usada en el documento -->
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Hace que la app sea responsive (se vea bien en cualquier dispositivo móvil) -->
-
-  <title>Festivos CO 2025</title>
-  <!-- Título que aparece en la pestaña del navegador -->
-
-  <link rel="stylesheet" href="/style.css">
-  <!-- Carga los estilos globales -->
-
-  <link rel="icon" href="/img/festivos.png">
-  <!-- Ícono personalizado de la app -->
+  <title>Festivos Colombia 2025</title>
+  <!-- Enlace al archivo de estilos centralizado -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Ícono personalizado de la app (ideal para WebView Android) -->
+  <link rel="icon" href="assets/icono.png">
 </head>
-
 <body>
-  <!-- Contenedor principal donde se cargará todo el contenido dinámicamente -->
-  <main id="app"></main>
+  <!-- Splash screen inicial (se oculta luego con JS) -->
+  <div id="splash" class="splash-screen">
+    <img src="assets/fondo.png" alt="Splash" class="splash-img">
+  </div>
 
-  <!-- Menú inferior de navegación con 5 botones. Cada uno activa una vista distinta -->
-  <nav class="menu-inferior">
-    <button onclick="cambiarPestaña('inicio')">Inicio</button>
-    <button onclick="cambiarPestaña('buscar')">Buscar</button>
-    <button onclick="cambiarPestaña('filtrar')">Filtrar</button>
-    <button onclick="cambiarPestaña('favoritos')">Favoritos</button>
-    <button onclick="cambiarPestaña('original')">Original</button>
-    <button onclick="cambiarPestaña('info')">Info</button>
-  </nav>  
+  <!-- Contenedor principal donde se renderiza todo dinámicamente -->
+  <main id="app">
+    <!-- Aquí se cargan dinámicamente las pestañas -->
+  </main>
 
-  <!-- Script principal en modo módulo para poder usar "import/export" entre archivos JS -->
-  <script type="module" src="js/main.js"></script>
+  <!-- Menú de navegación inferior con 4 ítems -->
+  <nav class="bottom-nav">
+    <button onclick="navigateTo('home')">Inicio</button>
+    <button onclick="navigateTo('buscar')">Buscar</button>
+    <button onclick="navigateTo('favoritos')">Favoritos</button>
+    <button onclick="navigateTo('info')">Info</button>
+  </nav>
+
+  <!-- Inclusión de los scripts principales -->
+  <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/buscador.js"></script>
+  <script src="js/filtro.js"></script>
+  <script src="js/favoritos.js"></script>
+  <script src="js/info.js"></script>
 </body>
 </html>
