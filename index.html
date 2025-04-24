@@ -2,46 +2,35 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <!-- Define la codificación de caracteres usada en el documento -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aplicación de Feriados</title>
-  <link rel="stylesheet" href="/style.css">
+  <!-- Hace que la app sea responsive (se vea bien en cualquier dispositivo móvil) -->
+
+  <title>Festivos CO 2025</title>
+  <!-- Título que aparece en la pestaña del navegador -->
+
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Carga los estilos globales -->
+
+  <link rel="icon" href="assets/calendar-icon.png">
+  <!-- Ícono personalizado de la app -->
 </head>
+
 <body>
-  <div class="container">
-    <!-- Menú inferior con pestañas -->
-    <div id="tabs">
-      <div class="tab" data-tab="feriados">Feriados</div>
-      <div class="tab" data-tab="favoritos">Favoritos</div>
-      <div class="tab" data-tab="buscar">Buscar</div>
-      <div class="tab" data-tab="informativa">Información</div> <!-- Nueva pestaña informativa -->
-    </div>
+  <!-- Contenedor principal donde se cargará todo el contenido dinámicamente -->
+  <main id="app"></main>
 
-    <!-- Vista de Feriados -->
-    <div id="vista-feriados" class="view active">
-      <h2>Lista de Feriados</h2>
-      <ul id="lista-feriados"></ul>
-    </div>
+  <!-- Menú inferior de navegación con 5 botones. Cada uno activa una vista distinta -->
+  <nav class="bottom-nav">
+    <button id="nav-home">Inicio</button>
+    <button id="nav-search">Buscar</button>
+    <button id="nav-filter">Filtrar</button>
+    <button id="nav-favorites">Favoritos</button>
+    <button id="nav-info">Info</button>
+  </nav>
 
-    <!-- Vista de Favoritos -->
-    <div id="vista-favoritos" class="view">
-      <h2>Favoritos</h2>
-      <ul id="lista-favoritos"></ul>
-    </div>
-
-    <!-- Vista de Búsqueda -->
-    <div id="vista-buscar" class="view">
-      <h2>Buscar Feriados</h2>
-      <input type="text" id="input-busqueda" placeholder="Buscar por nombre o fecha">
-      <ul id="resultados-busqueda"></ul>
-    </div>
-
-    <!-- Vista Informativa (Generada dinámicamente) -->
-    <div id="vista-informativa" class="view">
-      <!-- Aquí se llenará el contenido de la pestaña informativa -->
-    </div>
-  </div>
-
-  <!-- Scripts de JavaScript -->
-  <script type="module" src="./js/main.js"></script>
+  <!-- Script principal en modo módulo para poder usar "import/export" entre archivos JS -->
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
