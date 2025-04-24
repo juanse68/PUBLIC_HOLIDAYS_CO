@@ -1,46 +1,51 @@
-// js/main.js
+import { renderInfoTab } from './infoTab.js';
+import { obtenerFeriados, feriados } from './api.js';
 
-// Importamos las funciones que se encargarán de cargar cada sección de la app.
-// Estas funciones se crearán en sus respectivos archivos más adelante.
-import { renderHome } from './home.js';
-import { renderSearch } from './buscador.js';
-import { renderFilter } from './filtro.js';
-import { renderFavorites } from './favoritos.js';
-import { renderInfo } from './info.js';
-
-// Cuando el DOM esté completamente cargado, se ejecuta esta función
-document.addEventListener('DOMContentLoaded', () => {
-  // Cargar la vista inicial por defecto (Inicio)
-  renderHome();
-
-  // Activar la navegación del menú inferior
-  setupNavigation();
+window.addEventListener("DOMContentLoaded", () => {
+  cambiarPestaña('inicio');
 });
 
-// Esta función se encarga de escuchar los clics en cada botón del menú inferior
-function setupNavigation() {
-  // Botón "Inicio"
-  document.getElementById('nav-home').addEventListener('click', () => {
-    renderHome();
-  });
+window.cambiarPestaña = async function(pestaña) {
+  const app = document.getElementById("app");
+  
+  switch (pestaña) {
+    case 'inicio':
+      app.innerHTML = `<h2>Inicio</h2><p>Cargando feriados...</p>`;
+      const datos = await obtenerFeriados();
+      app.innerHTML = `
+        <h2>Feriados en Colombia - 2025</h2>
+        <ul class="lista-feriados">
+          ${datos.map(dia => `
+            <li>
+              <strong>${dia.date}</strong> - ${dia.localName}
+              <br /><small>${dia.name}</small>
+            </li>
+          `).join('')}
+        </ul>
+      `;
+      break;
 
-  // Botón "Buscar"
-  document.getElementById('nav-search').addEventListener('click', () => {
-    renderSearch();
-  });
+    case 'buscar':
+      app.innerHTML = `<h2>Buscar</h2><p>Aquí irá el buscador de feriados.</p>`;
+      break;
 
-  // Botón "Filtrar"
-  document.getElementById('nav-filter').addEventListener('click', () => {
-    renderFilter();
-  });
+    case 'filtrar':
+      app.innerHTML = `<h2>Filtrar</h2><p>Aquí irá el filtro por tipo de feriado.</p>`;
+      break;
 
-  // Botón "Favoritos"
-  document.getElementById('nav-favorites').addEventListener('click', () => {
-    renderFavorites();
-  });
+    case 'favoritos':
+      app.innerHTML = `<h2>Favoritos</h2><p>Aquí aparecerán tus feriados guardados.</p>`;
+      break;
 
-  // Botón "Info"
-  document.getElementById('nav-info').addEventListener('click', () => {
-    renderInfo();
-  });
+    case 'original':
+      app.innerHTML = `<h2>Funcionalidad Original</h2><p>Aquí va la funcionalidad única de tu app.</p>`;
+      break;
+
+    case 'info':
+      renderInfoTab();
+      break;
+
+    default:
+      app.innerHTML = `<h2>Error</h2><p>Pestaña no encontrada.</p>`;
+  }
 }

@@ -22,13 +22,14 @@
   <main id="app"></main>
 
   <!-- Menú inferior de navegación con 5 botones. Cada uno activa una vista distinta -->
-  <nav class="bottom-nav">
-    <button id="nav-home">Inicio</button>
-    <button id="nav-search">Buscar</button>
-    <button id="nav-filter">Filtrar</button>
-    <button id="nav-favorites">Favoritos</button>
-    <button id="nav-info">Info</button>
-  </nav>
+  <nav class="menu-inferior">
+    <button onclick="cambiarPestaña('inicio')">Inicio</button>
+    <button onclick="cambiarPestaña('buscar')">Buscar</button>
+    <button onclick="cambiarPestaña('filtrar')">Filtrar</button>
+    <button onclick="cambiarPestaña('favoritos')">Favoritos</button>
+    <button onclick="cambiarPestaña('original')">Original</button>
+    <button onclick="cambiarPestaña('info')">Info</button>
+  </nav>  
 
   <!-- Script principal en modo módulo para poder usar "import/export" entre archivos JS -->
   <script type="module" src="js/main.js"></script>

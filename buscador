@@ -1,0 +1,67 @@
+// js/buscador.js
+
+export async function renderSearch() {
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+
+  // Crear contenedor principal
+  const section = document.createElement('section');
+  section.classList.add('search-section');
+
+  // Crear input de búsqueda
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'Buscar festivo por nombre...';
+  input.classList.add('search-input');
+
+  // Crear contenedor para los resultados
+  const results = document.createElement('div');
+  results.classList.add('search-results');
+
+  // Agregar input y contenedor al main
+  section.appendChild(input);
+  section.appendChild(results);
+  app.appendChild(section);
+
+  // Llamamos a la API para obtener los festivos
+  let holidays = [];
+
+  try {
+    const response = await fetch('https://date.nager.at/api/v3/PublicHolidays/2025/CO');
+    holidays = await response.json();
+  } catch (error) {
+    results.innerHTML = '<p>Error al cargar los festivos.</p>';
+    return;
+  }
+
+  // Escuchar el evento input para buscar dinámicamente
+  input.addEventListener('input', () => {
+    const term = input.value.toLowerCase();
+    const filtered = holidays.filter(h =>
+      h.localName.toLowerCase().includes(term) || h.name.toLowerCase().includes(term)
+    );
+
+    renderResults(filtered, results);
+  });
+
+  // Mostrar resultados filtrados
+  function renderResults(data, container) {
+    container.innerHTML = '';
+
+    if (data.length === 0) {
+      container.innerHTML = '<p>No se encontraron festivos con ese nombre.</p>';
+      return;
+    }
+
+    data.forEach(holiday => {
+      const card = document.createElement('div');
+      card.classList.add('holiday-card');
+      card.innerHTML = `
+        <h3>${holiday.localName}</h3>
+        <p>${holiday.date}</p>
+        <small>${holiday.name}</small>
+      `;
+      container.appendChild(card);
+    });
+  }
+}
