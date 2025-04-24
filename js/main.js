@@ -1,7 +1,7 @@
 import { renderInfoTab } from './infoTab.js';
 import { obtenerFeriados, feriados } from './api.js';
 import { renderBuscarTab } from './buscador.js';
-import { renderFiltrarTab } from './filtrar.js';
+import { renderFiltrarTab } from './filter.js';
 import { renderFavoritosTab } from './favoritosTab.js';
 
 window.addEventListener("DOMContentLoaded", () => {
