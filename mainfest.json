@@ -1,0 +1,13 @@
+{
+  "name": "Feriados CO 2025",
+  "short_name": "Feriados25",
+  "description": "Consulta de feriados colombianos 2025",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00695C",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
