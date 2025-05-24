@@ -82,45 +82,49 @@
   <script src="./js/proximo.js" defer></script>
   <script src="/service-worker.js" defer></script>
   <!-- PWA: Registro Service Worker y A2HS -->
+    <!-- ... justo antes de cerrar </body> ... -->
   <script>
-    // 1. Registrar el Service Worker
+    // 1. Registrar Service Worker
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker
-          .register('./service-worker.js')
-          .then(() => console.log('SW registrado ✅'))
-          .catch(e => console.error('Error al registrar SW:', e));
-      });
+      navigator.serviceWorker
+        .register('./service-worker.js')
+        .then(() => console.log('SW registrado ✅'))
+        .catch(e => console.error('Error al registrar SW:', e));
     }
 
-    // 2. Captura el evento antes de instalar
     let deferredPrompt;
+
+    // 2. Capturar el evento beforeinstallprompt
     window.addEventListener('beforeinstallprompt', e => {
-      e.preventDefault();
+      console.log('🎉 beforeinstallprompt fired!', e);  // <-- Aquí añades el log
+      e.preventDefault();                              // Evita el banner automático
       deferredPrompt = e;
-      document.getElementById('btn-instalar').style.display = 'block';
+      const btn = document.getElementById('btn-instalar');
+      if (btn) btn.style.display = 'block';
     });
 
     // 3. Al hacer clic en el botón de instalar
-    const btn = document.getElementById('btn-instalar');
-    btn.addEventListener('click', async () => {
+    document.getElementById('btn-instalar')?.addEventListener('click', async () => {
       if (!deferredPrompt) return;
       deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log('Resultado de instalación:', outcome);
+      await deferredPrompt.userChoice;
       deferredPrompt = null;
-      btn.style.display = 'none';
+      document.getElementById('btn-instalar').style.display = 'none';
     });
 
     // 4. Mensaje guía para iOS
-    if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
-      const msg = document.createElement('div');
-      msg.innerHTML = `
+    function esIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent); }
+    if (esIOS()) {
+      const mensaje = document.createElement('div');
+      mensaje.innerHTML = `
         <p style="text-align:center; padding:1rem;">
           En iOS, toca <strong>Compartir</strong> y luego "Agregar a pantalla de inicio".
         </p>`;
-      btn.replaceWith(msg);
+      document.getElementById('btn-instalar').replaceWith(mensaje);
     }
   </script>
+</body>
+</html>
+
 </body>
 </html>
