@@ -14,10 +14,7 @@
   <meta name="theme-color" content="#00695C" />
 </head>
 
-  <!-- Botón para "Add to Home Screen" -->
-  <button id="btn-instalar" style="display:none; position:fixed; bottom:1rem; right:1rem; padding:0.5rem 1rem; background:#00695C; color:#fff; border:none; border-radius:4px;">
-    📱 Instalar App
-  </button>
+ 
 
   <!-- Navegación -->
   <nav>
@@ -31,7 +28,11 @@
   <!-- Cabecera -->
    <img src="./icons/festivos.png" alt="Feriados en Colombia" class="imagen-api" />
   <h1 style="text-align: center; margin-top: 2rem;">API Utilizada: Nager.Date - Feriados CO</h1>
-  <body ">
+  <body>
+     <!-- Botón para "Add to Home Screen" -->
+  <button id="btn-instalar">
+    📱 Instalar App
+  </button>
   <div class="descripcion-api">
     <h2>¿Qué es la API de Nager.Date?</h2>
     <p>
@@ -83,6 +84,13 @@
   <!-- PWA: Registro Service Worker y A2HS -->
     <!-- ... justo antes de cerrar </body> ... -->
   <script>
+    window.addEventListener('load', () => {
+  const btn = document.getElementById('btn-instalar');
+  if (btn) {
+    btn.style.display = 'block';
+  }
+});
+
     // 1. Registrar Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
