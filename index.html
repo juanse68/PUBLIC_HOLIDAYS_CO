@@ -1,14 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Festivos Colombia 2025 - API Nager</title>
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- PWA: Manifest y tema -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#00695C" />
 </head>
-<body style="background-image: url('/img/festivos.png')">
+
+  <!-- Botón para "Add to Home Screen" -->
+  <button id="btn-instalar" style="display:none; position:fixed; bottom:1rem; right:1rem; padding:0.5rem 1rem; background:#00695C; color:#fff; border:none; border-radius:4px;">
+    📱 Instalar App
+  </button>
+
+  <!-- Navegación -->
   <nav>
     <a href="#inicio">Inicio</a>
     <a href="#festivos">Festivos</a>
@@ -17,8 +28,11 @@
     <a href="#info">Info</a>
   </nav>
 
+  <!-- Cabecera -->
+  
   <h1 style="text-align: center; margin-top: 2rem;">API Utilizada: Nager.Date - Feriados CO</h1>
-  <img src="./img/festivos.png" alt="Feriados en Colombia" class="imagen-api" />
+  <img src="/icons/festivos.png" alt="Feriados en Colombia" class="imagen-api" />
+  <body>
   <div class="descripcion-api">
     <h2>¿Qué es la API de Nager.Date?</h2>
     <p>
@@ -26,12 +40,13 @@
     </p>
   </div>
   <div class="info-extra">
-    Versión de la app: V.1.0.0 <br>
+    Versión de la app: V.1.0.0<br />
     GitHub: @juanse68
   </div>
 
+  <!-- Secciones de contenido -->
   <section id="inicio">
-    <input type="text" id="buscador" placeholder="Buscar festivo...">
+    <input type="text" id="buscador" placeholder="Buscar festivo..." />
     <select id="filtro">
       <option value="all">Todos</option>
     </select>
@@ -59,10 +74,54 @@
     <a href="#favoritos"><i class="fa fa-heart"></i> Favoritos</a>
     <a href="#info"><i class="fa fa-info-circle"></i> Info</a>
   </footer>
+
+  <!-- Lógica de tu app -->
   <script src="./js/festivos.js" defer></script>
   <script src="./js/buscador.js" defer></script>
   <script src="./js/filtro.js" defer></script>
   <script src="./js/favoritos.js" defer></script>
   <script src="./js/proximo.js" defer></script>
+
+  <!-- PWA: Registro Service Worker y A2HS -->
+  <script>
+    // 1. Registrar el Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('./service-worker.js')
+          .then(() => console.log('SW registrado ✅'))
+          .catch(e => console.error('Error al registrar SW:', e));
+      });
+    }
+
+    // 2. Captura el evento antes de instalar
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('btn-instalar').style.display = 'block';
+    });
+
+    // 3. Al hacer clic en el botón de instalar
+    const btn = document.getElementById('btn-instalar');
+    btn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log('Resultado de instalación:', outcome);
+      deferredPrompt = null;
+      btn.style.display = 'none';
+    });
+
+    // 4. Mensaje guía para iOS
+    if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+      const msg = document.createElement('div');
+      msg.innerHTML = `
+        <p style="text-align:center; padding:1rem;">
+          En iOS, toca <strong>Compartir</strong> y luego "Agregar a pantalla de inicio".
+        </p>`;
+      btn.replaceWith(msg);
+    }
+  </script>
 </body>
 </html>

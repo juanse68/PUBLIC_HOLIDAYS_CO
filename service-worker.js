@@ -1,15 +1,14 @@
 const CACHE_NAME = 'feriados-co-v1';
 const FILES_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/offline.html',
-  '/js/buscador.js',
-  '/js/festivos.js',
-  '/js/filtro.js',
-  '/js/favoritos.js',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  './index.html',
+  './style.css',
+  './offline.html',
+  './js/festivos.js',
+  './js/buscador.js',
+  './js/filtro.js',
+  './js/favoritos.js',
+  './js/proximo.js',
+  './icons/festivos.png',
 ];
 
 self.addEventListener('install', evt => {
@@ -35,6 +34,6 @@ self.addEventListener('fetch', evt => {
   evt.respondWith(
     caches.match(evt.request)
       .then(resp => resp || fetch(evt.request))
-      .catch(() => caches.match('/offline.html'))
+      .catch(() => caches.match('./offline.html'))
   );
 });
